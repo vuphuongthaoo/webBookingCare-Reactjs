@@ -3,33 +3,33 @@ import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { emitter } from "../../utils/emitter";
-class ModalUser extends Component {
+import _ from "lodash";
+class ModalEditUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: "",
       email: "",
       password: "",
       firstName: "",
       lastName: "",
       address: "",
     };
-    this.listenToEmiiter();
-  }
-
-  listenToEmiiter() {
-    emitter.on("EVENT_CLEAR_MODAL_DATA", () => {
-      this.setState({
-        email: "",
-        password: "",
-        firstName: "",
-        lastName: "",
-        address: "",
-      });
-    });
   }
 
   componentDidMount() {
-    // console.log("mouting modal");
+    let user = this.props.currentUser;
+    if (user && !_.isEmpty(user)) {
+      this.setState({
+        id: user.id,
+        email: user.email,
+        password: "harcode",
+        firstName: user.firstName,
+        lastName: user.lastName,
+        address: user.address,
+      });
+    }
+    console.log("didmout edit modal", this.props.currentUser);
   }
 
   toggle = () => {
@@ -37,17 +37,6 @@ class ModalUser extends Component {
   };
 
   handleOnChageInput = (event, id) => {
-    // this.state[id] = event.target.value;
-
-    // this.setState(
-    //   {
-    //     ...this.state,
-    //   },
-    //   () => {
-    //     console.log("check bad state:", this.state);
-    //   }
-    // );
-    //good code
     let copyState = { ...this.state };
     copyState[id] = event.target.value;
     this.setState({
@@ -67,10 +56,11 @@ class ModalUser extends Component {
     }
     return isValid;
   };
-  handleAddNewUser = () => {
+  handleSaveUser = () => {
     let isValid = this.checkValideInput();
     if (isValid === true) {
-      this.props.createNewuser(this.state, "abc");
+      //call api edit user modal
+      this.props.editUser(this.state);
     }
   };
 
@@ -89,7 +79,7 @@ class ModalUser extends Component {
             this.toggle();
           }}
         >
-          Create a new user
+          Edit a new user
         </ModalHeader>
         <ModalBody>
           <div className="modal-user-body">
@@ -101,6 +91,7 @@ class ModalUser extends Component {
                   this.handleOnChageInput(event, "email");
                 }}
                 value={this.state.email}
+                disabled
               />
             </div>
             <div className="input-container">
@@ -111,6 +102,7 @@ class ModalUser extends Component {
                   this.handleOnChageInput(event, "password");
                 }}
                 value={this.state.password}
+                disabled
               />
             </div>
             <div className="input-container">
@@ -150,10 +142,10 @@ class ModalUser extends Component {
             color="primary"
             className="px-3"
             onClick={() => {
-              this.handleAddNewUser();
+              this.handleSaveUser();
             }}
           >
-            Add new
+            Save changes
           </Button>
           {""}
           <Button
@@ -179,4 +171,4 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalUser);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalEditUser);
