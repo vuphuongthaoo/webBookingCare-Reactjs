@@ -3,9 +3,18 @@ import { connect } from "react-redux";
 import "./HomeHeader.scss";
 import logo from "../../assets/logo.svg";
 import { FormattedMessage } from "react-intl";
+import { LANGUAGES } from "../../utils";
+
+import { changeLanguageApp } from "../../store/actions";
+
 class HomeHeader extends Component {
+  changeLanguage = (language) => {
+    this.props.changeLanguageAppRedux(language);
+  };
+
   render() {
-    console.log("check props: ", this.props);
+    let language = this.props.language;
+    console.log("check language:", language);
     return (
       <React.Fragment>
         <div className="home-header-container">
@@ -70,8 +79,28 @@ class HomeHeader extends Component {
                 <i className="fas fa-question-circle"></i>
                 <FormattedMessage id="homeheader.support" />
               </div>
-              <div className="language-vi">VN</div>
-              <div className="language-en">EN</div>
+              <div
+                className={
+                  language === LANGUAGES.VI
+                    ? "language-vi active"
+                    : "language-vi"
+                }
+              >
+                <span onClick={() => this.changeLanguage(LANGUAGES.VI)}>
+                  VN
+                </span>
+              </div>
+              <div
+                className={
+                  language === LANGUAGES.EN
+                    ? "language-en active"
+                    : "language-en"
+                }
+              >
+                <span onClick={() => this.changeLanguage(LANGUAGES.EN)}>
+                  EN
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -157,7 +186,7 @@ class HomeHeader extends Component {
 
               <div className="option-child">
                 <div className="icon-child">
-                  <i class="fas fa-procedures"></i>
+                  <i className="fas fa-procedures"></i>
                 </div>
                 {/* <div className="text-child">Gói phẫu thuật</div> */}
                 <div className="text-child">
@@ -167,7 +196,7 @@ class HomeHeader extends Component {
 
               <div className="option-child">
                 <div className="icon-child">
-                  <i class="fas fa-ambulance"></i>
+                  <i className="fas fa-ambulance"></i>
                 </div>
                 {/* <div className="text-child">Sản phẩm y tế</div> */}
                 <div className="text-child">
@@ -190,7 +219,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);

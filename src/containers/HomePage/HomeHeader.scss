@@ -61,16 +61,32 @@
 
             .language-vi {
                 cursor: pointer;
+                opacity: 0.2;
                 &.active {
-                    color: #84771f;
+                    opacity: 1;
+                    span {
+                        color: maroon
+                    }
+                }
+                &:hover {
+                    opacity: 1;
                 }
 
             }
             .language-en {
+                opacity: 0.2;
                 margin: 0 10px;
                 cursor: pointer;
                 &.active {
-                    color: #1f3880;
+                    opacity: 1;
+                    span {
+                        // color: #0c98de;
+                        color: blue
+                    }
+                    
+                }
+                &:hover {
+                    opacity: 1;
                 }
             }
         }
