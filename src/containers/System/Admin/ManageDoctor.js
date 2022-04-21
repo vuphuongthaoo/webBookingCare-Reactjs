@@ -11,7 +11,7 @@ import "./ManageDoctor.scss";
 import Select from "react-select";
 import { CRUD_ACTIONS, LANGUAGES } from "../../../utils";
 import { getDetailInforDoctor } from "../../../services/userService";
-import { has } from "markdown-it/lib/common/utils";
+//import { has } from "markdown-it/lib/common/utils";
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 class ManageDoctor extends Component {
@@ -99,8 +99,6 @@ class ManageDoctor extends Component {
         hasOldData: false,
       });
     }
-
-    console.log(`vuthao check:`, res);
   };
   handleOnChangeDesc = (event) => {
     this.setState({
@@ -170,7 +168,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchAllDoctors: (id) => dispatch(actions.fetchAllDoctors()),
+    fetchAllDoctors: () => dispatch(actions.fetchAllDoctors()),
     saveDetailDoctor: (data) => dispatch(actions.saveDetailDoctor(data)),
   };
 };
