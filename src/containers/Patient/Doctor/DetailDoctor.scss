@@ -5,7 +5,7 @@
     .intro-doctor {
         display: flex;
         padding: 10px 100px;
-        background-color: rgb(89, 174, 205);
+        //background-color: rgb(89, 174, 205);
         .content-left{
             width: 20%;
             background: center center no-repeat;
@@ -33,6 +33,20 @@
                 padding-top: 10px;
             }
             
+        }
+    }
+
+    .schedule-doctor{
+        margin: 0 100px;
+        display: flex;
+        height: 200px;
+        border: 1px solid red;
+
+        .content-left{
+            width: 50%;
+        }
+        .content-right{
+            width: 50%;
         }
     }
     .detail-infor-doctor{
