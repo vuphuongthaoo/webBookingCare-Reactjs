@@ -1,6 +1,7 @@
 .manage-doctor-container {
     padding: 5px;
     
+    
     .manage-doctor-title {
         text-align: center;
         margin: 15px 0;
@@ -48,11 +49,14 @@
         padding-bottom: 15px;
 
         .content-left {
+            //width: 35%;
             width: 40%;
         }
 
         .content-right{
-            width: 60%;
+            //width: 65%;
+            width: 70%;
+            
         }
     }
 }
