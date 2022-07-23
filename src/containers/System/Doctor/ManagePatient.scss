@@ -1,0 +1,46 @@
+.manage-patient-container{
+    padding: 0 15px;
+    .m-p-title{
+        text-align: center;
+        margin: 10px 0;
+        text-transform: uppercase;
+        font-size: 17px;
+        font-weight: 600;
+
+    }
+    .manage-patient-body {
+        padding: 0 20px;
+
+        .table-manage-patient{
+            table, th, td {
+                border:1px solid black;
+                border-collapse: collapse;
+              }
+              th, td {
+                padding: 5px;
+                text-align: left;
+              }
+
+              button {
+                border: none;
+                outline: none;
+                cursor: pointer;
+
+                
+                
+              }
+              .mp-btn-confirm{
+                margin-right: 10px;
+                height: 30px;
+                border-radius: 3px;
+                background: #fff04b;
+                }
+              .mp-btn-remedy {
+                height: 30px;
+                border-radius: 3px;
+                background: #007bff;
+
+                }
+        }
+    }
+}
