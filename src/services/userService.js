@@ -97,6 +97,10 @@ const createNewClinic = (data) => {
   return axios.post("/api/create-new-clinic", data);
 };
 
+const postSendRemedy = (data) => {
+  return axios.post("/api/send-remedy", data);
+};
+
 const getAllPatientForDoctor = (data) => {
   return axios.get(
     `/api/get-list-patient-for-doctor?doctorId=${data.doctorId}&date=${data.date}`
@@ -127,4 +131,5 @@ export {
   getAllClinic,
   getAllDetailClinicById,
   getAllPatientForDoctor,
+  postSendRemedy,
 };
